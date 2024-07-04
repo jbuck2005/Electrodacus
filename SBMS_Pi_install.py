@@ -15,8 +15,8 @@ os.system("systemctl start influxdb")
 os.system("sudo apt install influxdb-client")
 os.system("influx -execute 'CREATE DATABASE SBMS'")
 
-os.system("apt-get -y install python-influxdb")
-os.system("sudo apt-get install python-serial")
+os.system("pip install influxdb")
+os.system("sudo apt-get install python3-serial")
 
 # Install Grafana
 os.system("apt-get install -y adduser libfontconfig1")
@@ -44,5 +44,5 @@ def get_ip_address():
 ipaddress = get_ip_address()
 os.system("curl --user admin:admin \"http://" + ipaddress + ":3000/api/datasources\" -X POST -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{\"name\":\"SBMS_Data\",\"isDefault\":true ,\"type\":\"influxdb\",\"url\":\"http://localhost:8086\",\"database\":\"SBMS\",\"access\":\"proxy\",\"basicAuth\":false}'")
 
-print "Login to http://" + ipaddress + ":3000"
-print "Username = admin, password = admin"
+print("Login to http://" + ipaddress + ":3000")
+print("Username = admin, password = admin")
